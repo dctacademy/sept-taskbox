@@ -1,0 +1,52 @@
+<h3><%= @project.name %></h3>
+<b>Client : <%#  @project.client.name if !@project.client.nil?%>
+						<%= link_to @project.client.try(:name), @project.client %>
+</b>
+<br/>
+<b>Categories</b>
+<ul>
+	<% @project.categories.each do |category| %>
+		<li><%= category.name %></li>
+	<% end %>
+</ul>
+
+<h3> Listing Tasks</h3>
+
+	<h4>Over Due </h4>
+	
+	<h4>Incomplete </h4>
+
+	<h4>Completed </h4>
+	<ol>
+		<% @project.completed_tasks.each do |task|  %>
+			<li><%= task.title %> - <%= task.due_date %> - <%= task.is_completed %></li>
+		<% end %>
+	</ol>
+
+
+<h3>Add Task</h3>
+
+<%= form_for @task do |f| %>
+
+<%= f.hidden_field :project_id, value: @project.id %>
+
+<%= f.label :title %><br/>
+<%= f.text_field :title %><br/>
+
+<%= f.label :due_date %><br/>
+<%= f.date_select :due_date %><br/>
+
+<%= f.label :is_completed %>?<br/>
+<%= f.check_box :is_completed %>
+<br/>
+<%= f.submit %>
+
+<% end %>
+
+
+<%= link_to "edit", edit_project_path(@project.id) %> | 
+
+<%= link_to "destroy", project_path(@project.id), method: :delete, data: {confirm: "Are you sure?"} %>
+
+<%= link_to "Back", projects_path %>
+

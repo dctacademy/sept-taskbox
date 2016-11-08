@@ -1,0 +1,82 @@
+#ALL 
+ModelName.all
+ returns all the rows from the table , converted to an array of objects
+
+rails console -> 
+
+clients = Client.all 
+# here clients is an array of client objects 
+
+puts "There are totally #{clients.size} clients "
+
+clients.each do |client|
+ puts client.name 
+end 
+
+
+# FIND 
+ ModelName.find(id)
+  finds the record whose id matches id, returns an object if the record is found else a record not found exception is raised 
+
+  client = Client.find(3)
+
+  puts client.name 
+
+
+  ModelName.first
+   finds the first row in the table, object is returned if there is a row in the db, else returns nil 
+
+  ModelName.last
+   find the last row in the table, object is returned if there is a row in the db, else returns nil 
+
+# WHERE 
+  ModelName.where('column_name = ?')
+
+  projects = Project.where('client_id = ?', 14)
+  where method is gonna perform a query on the table based on a condition, where the conditions are column name and its value. 
+
+  projects = Project.where('client_id = ? AND status = ?', 14, "new")
+
+# ORDER 
+ModelName.order('column_name')
+# ascending order (0-9, 'A' - 'z', Datewise)
+Project.order('start_date')
+
+ModelName.order('column_name DESC')
+Project.order('start_date DESC')
+
+# LIMIT - limits the record to a given number 
+
+Project.order('start_date DESC').limit(10)
+
+ACTIVITIES
+1) Find all the projects that have started this month 
+# project = Project.where('start_date > ?', Date.today.beginning_of_month)
+##date = "yyyy-mm-dd"
+
+ project = Project.where('start_date > ?', Date.parse("2016-10-01"))
+
+
+2) Find all the projects that have started in the last 3 months
+
+projects = Project.where('start_date >= ?', Date.parse("2016-07-01"))
+
+3) Find all the projects between March & May
+
+projects = Project.where('start_date >= ? AND start_date <= ?', Date.parse("2016-03-01"), Date.parse("2016-05-01"))
+
+4) Find all the projects whose status is either new or on-going 
+
+projects = Project.where('status = ? OR status = ?', "new", "on-going")
+
+6) Find all the projects of clients whose id's are 1,2,3,4,5 
+
+projects = Project.where(client_id: [1,2,3,4,5])
+
+5) List the projects for client whose id is 10, in ascending order of project start date 
+
+projects = Project.where('client_id = ?', 10).order('start_date')
+
+
+
+

@@ -1,0 +1,25 @@
+<h2>Total Products worth : INR <%= @products_sum %></h2>
+
+<h2>Listing Products based on Categories</h2>
+
+<% @products_by_categories.each do |category, products| %>
+	<h3><%= category %></h3>
+	<ul>
+		<% products.each do |product| %>
+			<li><%= product.name %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% @categories.each do |category| %>
+
+	<h3><%= category %></h3>
+	<ul>
+		<% Product.where('category = ?', category).each do |product| %>
+			<li><%= product.name %></li>
+		<% end %>
+	</ul>
+
+<% end %>
+
+

@@ -1,0 +1,25 @@
+<h2><%= @client.name %> </h2>
+
+<% if @client.projects.empty? %>
+	<p>No Projects Found. Add you first project <%= link_to " here", new_project_path %>
+<% else %>
+
+<h3>Listing Projects (<%= @client.projects.size %>)</h3>
+<ul>
+	<% @client.projects.each do |project| %>
+		<li><%= link_to project.name, project_path(project.id) %></li>
+	<% end %>
+</ul>
+
+
+<h3>Listing New Projects</h3>
+<ul>
+	<% @client.projects.where('status = ?', "new").each do |project| %>
+		<li><%= link_to project.name, project_path(project.id) %></li>
+	<% end %>
+</ul>
+
+<% end %>
+
+
+<%= link_to "back", clients_path %>

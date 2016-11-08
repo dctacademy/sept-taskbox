@@ -1,0 +1,56 @@
+<!-- 
+	Simple Approach
+
+<h2>Listing Products</h2>
+<table border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Price</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td>Pencil</td>
+			<td>15</td>
+		</tr>
+		<tr>
+			<td>Scale</td>
+			<td>10</td>
+		</tr>
+		<tr>
+			<td>Marker</td>
+			<td>25</td>
+		</tr>
+	</tbody>
+</table>
+
+<b>Total : <%= 15 + 10 + 25 %></b>
+-->
+
+<% products = {"pencil" => 10, "scale" => 5, "marker" => 15, "sketch pen" => 20} %>
+
+<h2>Listing Products</h2>
+<table border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Price</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% sum = 0 %>
+		<% products.each do |name,value| %>
+			<tr>
+				<td><%= name %></td>
+				<td><%= value %></td>
+			</tr>
+			<% sum += value %>
+		<% end %>
+	</tbody>
+</table>
+<b>Total : <%= sum %></b> <br>
+
+<b>Total (inject) : <%= products.values.inject(:+) %></b>
+
