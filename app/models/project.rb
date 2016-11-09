@@ -43,6 +43,16 @@ class Project < ActiveRecord::Base
 		# Task.where('is_completed = ? AND project_id = ?', true, self.id)
 	end
 
+	def incomplete_tasks
+		self.tasks.where('is_completed = ? AND due_date >= ?', false, Date.today)
+		# Task.where('is_completed = ? AND project_id = ?', true, self.id)
+	end
+
+	def overdue_tasks
+		self.tasks.where('is_completed = ? AND due_date < ?', false, Date.today)
+		# Task.where('is_completed = ? AND project_id = ?', true, self.id)
+	end
+
 
 	private 
 	def check_status_on_create

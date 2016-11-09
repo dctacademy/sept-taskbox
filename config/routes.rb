@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+  get '/tasks/mark_as_complete'
   resources :tasks#, except: [:index, :new]
 
   devise_for :users

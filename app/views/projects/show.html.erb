@@ -13,9 +13,23 @@
 <h3> Listing Tasks</h3>
 
 	<h4>Over Due </h4>
-	
-	<h4>Incomplete </h4>
+		<ol>
+		<% @project.overdue_tasks.each do |task|  %>
+			<li><%= task.title %> - <%= task.due_date %> - <%= task.is_completed %>
+			
+				<%= link_to "Mark As Complete", tasks_mark_as_complete_path(task_id: task.id) %>
 
+			</li>
+		<% end %>
+	</ol>
+	<h4>Incomplete </h4>
+	<ol>
+		<% @project.incomplete_tasks.each do |task|  %>
+			<li><%= task.title %> - <%= task.due_date %> - <%= task.is_completed %> 
+			<%= link_to "Mark As Complete", tasks_mark_as_complete_path(task_id: task.id) %>
+			</li>
+		<% end %>
+	</ol>
 	<h4>Completed </h4>
 	<ol>
 		<% @project.completed_tasks.each do |task|  %>

@@ -9,6 +9,13 @@ class TasksController < ApplicationController
 		end
 	end
 
+	def mark_as_complete
+		task = Task.find(params[:task_id])
+		task.update_attributes(is_completed: true)
+		Notification.task_completed(task).deliver
+		redirect_to :back, notice: "Successfully completed task"
+	end
+
 
 	private
 
