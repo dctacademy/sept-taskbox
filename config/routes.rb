@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   get '/tasks/mark_as_complete'
+  get '/clients/export'
   resources :tasks#, except: [:index, :new]
 
   devise_for :users

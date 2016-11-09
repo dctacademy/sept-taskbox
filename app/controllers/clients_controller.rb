@@ -47,6 +47,10 @@ def show
 	#@projects = @client.projects #Project.where('client_id = ?', @client.id)
 end
 
+def export
+	@clients = current_user.clients
+end
+
 private 
 
 def client_params
