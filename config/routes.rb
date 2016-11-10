@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :api, defaults: {format: "json"} do 
+    namespace :v1 do 
+      resources :clients 
+    end
+  end
 
   get '/tasks/mark_as_complete'
   get '/clients/export'

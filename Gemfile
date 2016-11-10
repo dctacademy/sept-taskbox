@@ -4,6 +4,7 @@ gem 'faker'
 gem 'pry'
 gem 'devise'
 gem 'chartkick'
+gem 'rabl' # ruby api builder language , jbuilder, active model serializers, respond_to :json
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
