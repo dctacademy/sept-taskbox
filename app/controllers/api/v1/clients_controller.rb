@@ -1,6 +1,8 @@
+# UI Framework
 module Api
 	module V1 
 		class ClientsController < ApplicationController
+			before_action :authenticate_user!
 			def index 
 				@clients = current_user.clients
 			end
